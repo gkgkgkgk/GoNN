@@ -1,10 +1,10 @@
 package main 
 
 func main(){
-	inputNodes, hiddenNodes, outputNodes := initializeNeuralNetwork()
+	inputNodesCount, hiddenNodesCount, outputNodesCount, _, _ := initializeNeuralNetwork()
 	trainingData := getTrainingSet()
 	epochs := getEpochs()
 	learningRate := getLearningRate()
 
-	train(trainingData, epochs, inputNodes, outputNodes, hiddenNodes, learningRate)
+	train(trainingData, epochs, inputNodesCount, hiddenNodesCount, outputNodesCount, learningRate)
 }

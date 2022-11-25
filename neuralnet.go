@@ -10,6 +10,16 @@ import (
 	"math"
 )
 
+type neuron struct {
+	weights []float64
+	bias float64
+}
+
+func newNeuron(weights []float64, bias float64) *neuron {
+	n := neuron{weights: weights, bias:bias}
+	return &n
+}
+
 func sigmoid(x float64) float64{
 	return 1/(1 + math.Exp(-x))
 }
@@ -33,11 +43,12 @@ func train(trainingData []string, epochs int, inputNodes int, outputNodes int, h
 	}
 }
 
-func initializeNeuralNetwork() (inputNodesCount int, hiddenNodesCount int, outputNodesCount int){
+func initializeNeuralNetwork() (inputNodesCount int, hiddenNodesCount int, outputNodesCount int, hiddenNodes neuron, outputNodes neuron){
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Please enter the path to the initial neural network:")
 	path, _ := reader.ReadString('\n')
 	path = path[:len(path)-2]
+	path = "files\\wdbc\\sample.NNWDBC.init.txt"
 	
 	initialFile, err := os.ReadFile(path)
 
@@ -46,8 +57,8 @@ func initializeNeuralNetwork() (inputNodesCount int, hiddenNodesCount int, outpu
     }
 
 	initialData := strings.Split(string(initialFile), "\n")
-	nodes := strings.Split(initialData[0], " ")
-	for i, node := range nodes {
+	nodeCounts := strings.Split(initialData[0], " ")
+	for i, node := range nodeCounts {
 		nodeInt, err := strconv.Atoi(node)
 		if err != nil {
 			panic(err)
@@ -62,9 +73,18 @@ func initializeNeuralNetwork() (inputNodesCount int, hiddenNodesCount int, outpu
 			outputNodesCount = nodeInt
 		}
 	}
-	
-	// var hiddenNodes []float64
-	// var outputNodes []float64
+
+	hiddenInitialNodes := initialData[1:1+hiddenNodesCount]
+
+	for i, node := range nodes {
+		weights := strings.Split(node, " ")
+		for _, weight := range weights {
+
+		}
+		hiddenNodes = append(hiddenNodes, )
+	}
+
+	outputInitialNodes := initialData[1+hiddenNodesCount:1+hiddenNodesCount + outputNodesCount]
 
 	// xs, _ := parseLine(line, inputNodesCount, outputNodesCount)
 	// nodes = append(nodes, xs)
@@ -79,6 +99,7 @@ func getTrainingSet() (trainingData []string){
 	fmt.Println("Please enter the path to the training set:")
 	path, _ := reader.ReadString('\n')
 	path = path[:len(path)-2]
+	path = "files\\wdbc\\wdbc.train.txt"
 	
 	trainingFile, err := os.ReadFile(path)
 
@@ -89,21 +110,6 @@ func getTrainingSet() (trainingData []string){
 	trainingData = strings.Split(string(trainingFile), "\n")[1:]
 
 	return
-	// for trainingScanner.Scan() {
-	// 	line := trainingScanner.Text()
-	// 	nodes := strings.Split(line, " ")
-	// 	var err error
-	// 	examples, err = strconv.Atoi(nodes[0])
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-
-	// 	break
-	// }
-
-	// fmt.Printf("Found %d training examples.\n", examples)
-
-	// return 
 }
 
 func getEpochs() (epochs int){
