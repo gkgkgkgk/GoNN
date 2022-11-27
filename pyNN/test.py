@@ -1,7 +1,7 @@
 from neuralnet import NeuralNetwork
 from neuralnet import Parser
 
-parser = Parser(testing=True, default=True)
+parser = Parser(testing=True, default=False)
 inputNodeCount, hiddenNodeCount, outputNodeCount, hiddenWeights, outputWeights = parser.parseInitFile()
 
 nn = NeuralNetwork(inputNodeCount, hiddenNodeCount, outputNodeCount)

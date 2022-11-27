@@ -87,10 +87,10 @@ class NeuralNetwork:
                     self.testing_metrics[i][3] += 1
         
         for i in range(self.outputNodeCount):
-            self.testing_metrics[i][4] = (self.testing_metrics[i][0] + self.testing_metrics[i][3]) / (self.testing_metrics[i][0] + self.testing_metrics[i][1] + self.testing_metrics[i][2] + self.testing_metrics[i][3])
-            self.testing_metrics[i][5] = (self.testing_metrics[i][0]) / (self.testing_metrics[i][0] + self.testing_metrics[i][1])
-            self.testing_metrics[i][6] = (self.testing_metrics[i][0]) / (self.testing_metrics[i][0] + self.testing_metrics[i][2])
-            self.testing_metrics[i][7] = (2 * self.testing_metrics[i][5] * self.testing_metrics[i][6]) / (self.testing_metrics[i][5] + self.testing_metrics[i][6])
+            self.testing_metrics[i][4] = 0 if (self.testing_metrics[i][0] + self.testing_metrics[i][1] + self.testing_metrics[i][2] + self.testing_metrics[i][3]) == 0 else (self.testing_metrics[i][0] + self.testing_metrics[i][3]) / (self.testing_metrics[i][0] + self.testing_metrics[i][1] + self.testing_metrics[i][2] + self.testing_metrics[i][3])
+            self.testing_metrics[i][5] = 0 if (self.testing_metrics[i][0] + self.testing_metrics[i][1]) == 0 else (self.testing_metrics[i][0]) / (self.testing_metrics[i][0] + self.testing_metrics[i][1])
+            self.testing_metrics[i][6] = 0 if (self.testing_metrics[i][0] + self.testing_metrics[i][2]) == 0 else (self.testing_metrics[i][0]) / (self.testing_metrics[i][0] + self.testing_metrics[i][2])
+            self.testing_metrics[i][7] = 0 if (self.testing_metrics[i][5] + self.testing_metrics[i][6]) == 0 else (2 * self.testing_metrics[i][5] * self.testing_metrics[i][6]) / (self.testing_metrics[i][5] + self.testing_metrics[i][6])
 
         f = open(outputFile, "w")
         for i in range(self.outputNodeCount):
@@ -152,8 +152,8 @@ class Neuron:
 class Parser:
     def __init__(self, testing=False, default=False):
         if default:
-            self.initFile = "grades/sample.NNGrades.init.txt" if not testing else "trained.txt"
-            self.trainingFile = "grades/grades.train.txt" if not testing else "grades/grades.test.txt"
+            self.initFile = "data/grades/sample.NNGrades.init.txt" if not testing else "trained.txt"
+            self.trainingFile = "data/grades/grades.train.txt" if not testing else "data/grades/grades.test.txt"
             if not testing:
                 self.epochs = 100
                 self.learningRate = 0.05
