@@ -1,14 +1,14 @@
 # PyNN
 A simple neural network implemented in Python.
 
-## How to Run
-Run ```python3 train.txt```. Enter the initialization file for the neural network, the training file, and the desired hyperparameters.
+## How to Run This Program
+Run ```python3 train.py```. Enter the initialization file for the neural network, the training file, and the desired hyperparameters.
 
+Then, run ```python3 test.py``` and follow the instructions in order to train the model. The initialization file should be input as the trained neural network, which was previously created by the ```train.py``` script.
 
-Then, run ```python3 test.txt``` and follow the instructions in order to train the model. The initialization file should be the trained neural network.
 
 ## How to Generate a Custom Dataset
-A script called ```generator.py``` can be used to create new datasets. A data set with the first line being the amount of examples, the amount of input nodes, and the amount of output nodes can be used with this script. The iris dataset (as specified below) is used as an example. The generator script creates three new text files: an initialization file, a training file, and a testing file. The initialization file specifies a neural network with uniformly random weights. 
+A script called ```generator.py``` in the ```data``` directory can be used to create new datasets. A data set with the first line being the amount of examples, the amount of input nodes, and the amount of output nodes can be used with this script. The iris dataset (as specified below) is used as an example. The generator script creates three new text files: an initialization file, a training file, and a testing file. The initialization file specifies a neural network with uniformly random weights. 
 
 ## Testing with the Iris Dataset
 This neural network was trained on the classic iris dataset, which can be found [here](https://archive.ics.uci.edu/ml/datasets/iris). I edited the original dataset to have independent binary classifiers, instead of a string as the name. A table of examples is below.
@@ -20,7 +20,7 @@ This neural network was trained on the classic iris dataset, which can be found 
 
 
 ## Results of the Iris Dataset
-Three trials are documented below. 
+Three trials are documented below with their respective neural networks.
 
 ### Trial #1
 The network had 4 hidden nodes and was trained with a learning rate of 0.1 for 100 epochs.
@@ -43,3 +43,6 @@ The network had 12 hidden nodes and was trained with a learning rate of 0.1 for 
 Micro Averages: 0.978 0.967 0.967 0.967
 
 Macro Averages: 0.978 0.970 0.967 0.968
+
+### Conclusion
+12 hidden nodes with a learning rate of 0.1 and at least 100 epochs seems to work well for the iris dataset.
