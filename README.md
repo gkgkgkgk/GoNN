@@ -20,7 +20,7 @@ This neural network was trained on the classic iris dataset, which can be found 
 
 
 ## Results of the Iris Dataset
-Three trials are documented below with their respective neural networks.
+Three trials are documented below with their respective neural networks. The averages below represent overall accuracy, precision, recall, and the F1 metric.
 
 ### Trial #1
 The network had 4 hidden nodes and was trained with a learning rate of 0.1 for 100 epochs.
